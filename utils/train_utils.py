@@ -1,4 +1,39 @@
+from math import tanh
 from typing import List
+from math import exp
+
+
+class ActivationFunctions:
+    def __init__(self, n: float):
+        self.n = n
+
+    @staticmethod
+    def linear_function(self) -> float:
+        return self.n
+
+    @staticmethod
+    def sigmoid_function(self) -> float:
+        # output range (0 to 1)
+        return 1 / (1 + exp(- self.n))
+
+    @staticmethod
+    def sigmoid_derivation(self) -> float:
+        sigmoid = ActivationFunctions.sigmoid_function(self.n)
+        return sigmoid * (1 - sigmoid)
+
+    @staticmethod
+    def binary_step(self) -> int:
+        # output (0 or 1)
+        return 1 if self.n >= 0 else 0
+
+    @staticmethod
+    def hiperbolic_tangent(self) -> float:
+        # output range (-1 to 1)
+        return (exp(self.n) - exp(-self.n)) / (exp(self.n) + exp(-self.n))
+
+    @staticmethod
+    def hiperbolic_derivative(self) -> float:
+        return 1 - tanh(self.n) ** 2
 
 
 def dot_product(vector_x: List[float], vector_y: List[float]) -> float:
@@ -15,4 +50,3 @@ def dot_product(vector_x: List[float], vector_y: List[float]) -> float:
         result += vector_x[i] * vector_y[i]
 
     return result
-
