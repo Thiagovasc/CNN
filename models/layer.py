@@ -10,8 +10,8 @@ class Layer:
                  activation_function_name: str):
         self.neurons = []
         for _ in range(num_neurons):
-            weights = [0.0] * num_inputs
-            input_value = [0.0] * num_inputs
+            weights = [0.0] * (num_inputs + 1)
+            input_value = [0.0] * (num_inputs + 1)
             delta = 0.0
             neuron = Neuron(weights, input_value, learning_rate, activation_function,
                             activation_function_derived, activation_function_name, delta)
@@ -31,5 +31,3 @@ class Layer:
                 ActivationFunctions(n=neuron.compute_output()))
             for j in range(len(neuron.weights)):
                 neuron.weights[j] -= neuron.learning_rate * neuron.delta * neuron.input_value[j]
-
-
