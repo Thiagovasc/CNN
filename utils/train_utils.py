@@ -33,6 +33,16 @@ class ActivationFunctions:
         return 1 - tanh(self.n) ** 2
 
     @staticmethod
+    def relu(self):
+        # output (0, n)
+        return self.n if self.n > 0 else 0
+
+    @staticmethod
+    def relu_derivative(self):
+        # output (0,1)
+        return 1 if self.n >= 0 else 0
+
+    @staticmethod
     def dot_product(vector_x: List[float], vector_y: List[float]) -> float:
         result = 0.0
         len_x = len(vector_x)
