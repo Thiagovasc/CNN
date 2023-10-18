@@ -3,11 +3,17 @@ from models.neuron import Neuron
 from utils.train_utils import ActivationFunctions
 
 
-class Layer:
+class FullyConnectedLayer:
     def __init__(self, num_neurons: int, num_inputs: int, learning_rate: float,
                  activation_function: Callable[[ActivationFunctions], float],
-                 activation_function_derived: Callable[[ActivationFunctions], float],
-                 activation_function_name: str):
+                 activation_function_derived: Callable[[ActivationFunctions], float]):
+        self.num_neurons = num_neurons
+        self.num_inputs = num_inputs
+        self.learning_rate = learning_rate
+        self.activation_function = activation_function
+        self.activation_function_derived = activation_function_derived
+
+        """    
         self.neurons = []
         for _ in range(num_neurons):
             weights = [0.0] * (num_inputs + 1)
@@ -16,6 +22,7 @@ class Layer:
             neuron = Neuron(weights, input_value, learning_rate, activation_function,
                             activation_function_derived, activation_function_name, delta)
             self.neurons.append(neuron)
+            """
 
     def forward_propagation(self, input_values: List[float]) -> List[float]:
         outputs = []
