@@ -2,7 +2,7 @@ from math import tanh, exp
 from typing import List
 
 
-class ActivationFunctions:
+class ActivationFunction:
     def __init__(self, n: float):
         self.n = n
 
