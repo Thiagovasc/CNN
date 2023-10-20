@@ -45,7 +45,7 @@ class InitializationFunction:
         return weights
 
     @staticmethod
-    def normal_kaiming_initialization(self):
+    def normal_kaiming_initialization(self) -> List[float]:
         limit = (2 / self.num_inputs) ** (1 / 2)
         weights = []
         for i in range(self.num_outputs):
@@ -55,4 +55,3 @@ class InitializationFunction:
             weights.append(weight_matrix)
 
         return weights
-
