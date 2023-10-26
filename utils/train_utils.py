@@ -1,49 +1,66 @@
 from math import tanh, exp
-from typing import List
 
 
 class ActivationFunction:
-    def __init__(self, n: float):
-        self.n = n
+    def __init__(self, vector: list[float]):
+        self.vector = vector
 
     @staticmethod
-    def linear_function(self) -> float:
-        return self.n
+    def linear_function(self) -> list[float]:
+        return self.vector
 
     @staticmethod
-    def sigmoid_function(self) -> float:
-        return 1 / (1 + exp(-self.n))
+    def sigmoid_function(self) -> list[float]:
+        for _ in range(len(self.vector)):
+            self.vector[_] = 1 / (1 + exp(-self.vector[_]))
+
+        return self.vector
 
     @staticmethod
     def sigmoid_derivation(self) -> float:
-        return self.sigmoid_function(self.n) * (1 - self.sigmoid_function(self.n))
+        return self.sigmoid_function(self.vector) * (1 - self.sigmoid_function(self.vector))
 
     @staticmethod
-    def binary_step(self) -> int:
+    def binary_step(self) -> list[float]:
         # output (0 or 1)
-        return 1 if self.n >= 0 else 0
+        for _ in range(len(self.vector)):
+            if self.vector[_] >= 0:
+                self.vector[_] = 1
+            else:
+                self.vector[_] = 0
+
+        return self.vector
 
     @staticmethod
     def hiperbolic_tangent(self) -> float:
         # output range (-1 to 1)
-        return (exp(self.n) - exp(-self.n)) / (exp(self.n) + exp(-self.n))
+        return (exp(self.vector) - exp(-self.vector)) / (exp(self.vector) + exp(-self.vector))
 
     @staticmethod
-    def hiperbolic_derivative(self) -> float:
-        return 1 - tanh(self.n) ** 2
+    def hiperbolic_derivative(self) -> list[float]:
+        # return 1 - tanh(self.vector) ** 2
+        return self.vector
 
     @staticmethod
-    def relu(self):
+    def relu(self) -> list[float]:
         # output (0, n)
-        return self.n if self.n > 0 else 0
+        for _ in range(len(self.vector)):
+            if self.vector[_] < 0:
+                self.vector[_] = 0
+
+        return self.vector
 
     @staticmethod
-    def relu_derivative(self):
+    def relu_derivative(self) -> list[float]:
         # output (0,1)
-        return 1 if self.n >= 0 else 0
+        for _ in range(len(self.vector)):
+            if self.vector[_] <= 0:
+                self.vector[_] = 0
+
+        return self.vector
 
     @staticmethod
-    def dot_product(vector_x: List[float], vector_y: List[float]) -> float:
+    def dot_product(vector_x: list[float], vector_y: list[float]) -> float:
         result = 0.0
         len_x = len(vector_x)
         len_y = len(vector_y)
